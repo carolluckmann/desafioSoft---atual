@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Desafio Home</title>
+</head>
+<body>
+    <header>
+        <div class="store">
+          <a href="./index.html" class="logo">Suite Store</a>
+        </div>
+        <div id="others">
+          <a href="./products.html">Products</a>
+          <a href="./categories.html">Categories</a>
+          <a href="./history.html">History</a>
+        </div>
+    </header>
+    <main>
+        <div id="side-1">
+            <div class="first-value"> 
+                <select class="product" name="product" id="product" required>
+                    <option value=" " disabled selected hidden>
+                      Select product
+                    </option>
+                    <option value="Rice">Rice</option>
+                    <option value="Beans">Beans</option>
+                    <option value="Corn">Corn</option>
+                    <option value="Potato">Potato</option>
+                  </select>
+            </div>
+            <div class="other-value">
+                <input type="number" placeholder="Amount">
+                <input type="number" placeholder="Tax (%)" disabled>
+                <input type="number" placeholder="Price ($)" disabled>
+            </div>
+            <input onclick="addProduct" type="submit" class="add" value="Add Product to Cart">
+        </div>
+        <div class="vl"></div>
+        <div id="side-2">
+            <table>
+             <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td>Rice</td>
+                <td>$2.00</td>
+                <td>2</td>
+                <td>$4.00</td>
+            </tr>
+            <tr>
+                <td>Corn</td>
+                <td>$6.00</td>
+                <td>3</td>
+                <td>$18.00</td>
+            </tr>
+            <tr class="last">
+                <td>Potato</td>
+                <td>$0.50</td>
+                <td>21</td>
+                <td>$10.50</td>
+            </tr>
+        </div>
+        <div id="final-result">
+            <p><b>Tax:</b> $6.50</p>
+            <p><b>Total:</b>$32.50</p>
+        </div>
+        <div id="buttons-cart">
+            <input type="submit" value="Cancel" class="cancel">
+            <input type="submit" value="Finish" class="finish">   
+        </div>
+    </main>
+
+    <script>
+        function addProduct(){
+            localStorage.setItem("produto"), document.querySelector("#product").value
+        }
+    </script>
+</body>
+</html>

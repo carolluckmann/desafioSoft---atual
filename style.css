@@ -1,0 +1,191 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family:Arial, Helvetica, sans-serif;
+    }
+
+header{
+    display: flex;
+    padding: 0;
+    width: 100%;
+    gap: 1%;
+    background-color: rgb(87, 87, 216);
+    align-items: center;
+}
+
+.others {
+    border: 1px solid white;
+    display: flex;
+    align-items: end;
+}
+
+.logo {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+    font-weight: bold;
+}
+
+header a{
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+    padding: 20px;
+    font-size: small;
+    background-color: rgb(87, 87, 217);
+}
+
+main {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: 100%;
+}
+
+#side-2{
+    display: flex;
+    justify-content: end;
+    padding: 5%;
+    width: 90%;
+    height: 100%;
+}
+
+th,
+td {
+    padding: 10px;
+    border-right: solid 1px;
+}
+
+tr{
+    color: gray;
+    border-bottom: 1px solid;
+}
+
+#side-1{
+    padding: 30px;
+    margin-top: 2%;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    color: black;
+}
+
+.first-value,
+.first-value input {
+    width: 100%;
+    height: 100%;
+}
+
+.other-value {
+    display: flex;
+    flex-direction: row;
+    width: 102.5%;
+}
+
+.other-value input {
+    margin-right: 2%;
+    width: 100%;
+    height: 100%;
+}
+
+
+.add {
+    width: 100.5%;
+    background-color: rgb(87, 87, 216);
+    border: 0;
+    border-radius: 3px;
+    margin-left: 1%;
+    margin-top: 1%;
+    padding: 5px !important;
+}
+
+.first-value,
+.other-value,
+.add {
+    padding: 1%;
+    height: 20%;
+}
+
+.finish{
+    width: 100%;
+    background-color: rgb(87, 87, 216);
+    border: 0;
+    border-radius: 3px;
+    margin-top: 1%;
+    padding: 5px !important;
+}
+
+.cancel{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: rgb(216, 216, 230);
+    border: 0;
+    border-radius: 3px;
+    margin-top: 1%;
+    padding: 5px !important;
+    float: right;
+}
+
+#buttons-cart{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    position: absolute;
+    bottom: 2%;
+    gap: 10%;
+}
+
+#final-result{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    height: 80%;
+    position: absolute;
+    color: rgb(90, 89, 89);
+}
+
+#side-2-history{
+    display: flex;
+    padding: 1%;
+    width: 50%;
+}
+
+.button-history{
+    border-right: none;
+    border-bottom: none;
+}
+
+.button-category{
+    border-right: none;
+}
+
+.vl {
+    border-left: 1px solid rgb(5, 5, 5);
+    height: 80%;
+    position: absolute;
+    left: 50%;
+    top: 10%;
+  }
+
+select{
+    margin-right: 2%;
+}
+
+.last{
+    border-bottom: none;
+}
+.category{
+    cursor: pointer;
+    width: 60%;
+    height: 110%;
+    color: gray;
+}
+
+.product{
+    cursor: pointer;
+    width: 100.5%;
+    height: 110%;
+    color: gray;
+}
