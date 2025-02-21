@@ -6,9 +6,20 @@ const categoryButton = document.getElementById("categoryButton");
 let categories = [];
 
 function addCategory(){
+    const forbbiden = /<\/?[a-z][\s\S]*>/i;
     if(!validInput()){
         alert ("The fields should be filled!")
-        return true
+        return true;
+    } else if (forbbiden.test(categoryName.value)) {
+        alert("Invalid input!");
+        categoryName.value = " ";
+        tax.value = " ";
+        return false;
+    } else if (tax.value < 0 || tax.value > 100) {
+        alert("Tax must be a number between 0 and 100.");
+        categoryName.value = " ";
+        tax.value = " ";
+        return false;
     }
     const category = {
         name: categoryName.value,
@@ -22,6 +33,12 @@ function addCategory(){
 
 categoryButton.addEventListener("click", addCategory);
 
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        addCategory();
+    }
+});
+
 function getCategories(){
     categories = JSON.parse(localStorage.getItem("categories")) ?? [];
 }
@@ -29,8 +46,9 @@ function getCategories(){
 function validInput(){
         if (!categoryName.value || !tax.value){
            return false
-        } else {
-            return true
+        } 
+        else {
+            return true;
         }
     }
 
@@ -42,20 +60,18 @@ function showTable(){
         <th>Tax</th>
         <th>Action</th>
     </tr>`
-    let i = 0
+    let i = 0;
     for (let category of categories) {
         table.innerHTML += `
             <tr>
-                <td>${category.code}</td>
+                <td class="td-align">${category.code}</td>
                 <td>${category.name}</td>
-                <td>${category.tax}</td>
+                <td>${category.tax}%</td>
                 <td class="button-category"><button onclick = "deleteCategory(${i})" class="cancel">Delete</button></td>
             </tr>`;
             i++
     }
 }
-
-
 
 function deleteCategory(index){
     categories = categories.filter((_, i) => i !== index);
