@@ -6,21 +6,33 @@ const categoryButton = document.getElementById("categoryButton");
 let categories = [];
 
 function addCategory(){
+    if(!validInput()){
+        alert ("The fields should be filled!")
+        return true
+    }
     const category = {
         name: categoryName.value,
         tax: tax.value,
-        code: categories.length + 1
+        code: categories.length+1
     }
     categories.push(category);
     localStorage.setItem("categories", JSON.stringify(categories));
+    showTable();
 }
 
 categoryButton.addEventListener("click", addCategory);
 
 function getCategories(){
-    categories = JSON.parse(localStorage.getItem("categories"));
+    categories = JSON.parse(localStorage.getItem("categories")) ?? [];
 }
-getCategories();
+
+function validInput(){
+        if (!categoryName.value || !tax.value){
+           return false
+        } else {
+            return true
+        }
+    }
 
 function showTable(){
     table.innerHTML = 
@@ -29,32 +41,30 @@ function showTable(){
         <th>Category</th>
         <th>Tax</th>
         <th>Action</th>
-    </tr>
-    <tr>
-    <td>${category.code}</td>
-    <td>${category.name}</td>
-    <td>${category.tax}</td>
-    <td class="button-category"><input type="submit" value="Delete" class="cancel"></td>
     </tr>`
+    
+    for (let category of categories) {
+        table.innerHTML += `
+            <tr>
+                <td>${category.code}</td>
+                <td>${category.name}</td>
+                <td>${category.tax}</td>
+                <td class="button-category"><button onclick = "deleteCategory(${i})" class="cancel">Delete</button></td>
+            </tr>`;
+    }
 }
 
-// function validInput(){
-//     if (!categoryName.value || !tax.value){
-//        return true
-//     } else {
-//         return false
-//     }
-// }
+let i = 0;
 
-// function validAll(){
-//     if(validInput()){
-//         alert ("The fields should be filled!")
-//         return true
-//     } else {
-//         return false
-//     }
-// }
+function deleteCategory(index){
+    categories = categories.filter((_, i) => i !== index);
 
-// getCategories();
-// validAll();
+    localStorage.setItem("categories", JSON.stringify(categories))
+
+    getCategories()
+    showTable()
+}
+
+getCategories();
+deleteCategory();
 showTable();

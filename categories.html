@@ -22,9 +22,9 @@
         <div id="side-1">
             <div class="other-value">
                 <input type="text" id="category" placeholder="Category name"/>
-                <input type="number" placeholder="Tax (%)">
+                <input type="number" placeholder="Tax (%)" id="tax">
             </div>
-            <input onclick="" type="submit" class="add" value="Add Category">
+            <input onclick="" type="submit" class="add" id="categoryButton" value="Add Category">
         </div>
     <div class="vl"></div>
     <div id="side-2">
@@ -33,18 +33,19 @@
                 <th>Code</th>
                 <th>Category</th>
                 <th>Tax</th>
+                <th>Action</th>
             </tr>
             <tr>
                 <td>001</td>
                 <td>Food</td>
                 <td>10%</td>
-                <td class="button-category"><input type="submit" value="Delete" class="cancel"></td>
+                <td class="button-category"><button onclick="deleteCategory()" class="cancel">Delete</button></td>
             </tr>
             <tr class="last">
                 <td>002</td>
                 <td>Eletro</td>
                 <td>60%</td>
-                <td class="button-category"><input type="submit" value="Delete" class="cancel">
+                <td class="button-category"><button id="deleteCategory" value="Delete" class="cancel">
             </tr>
     </div>
 </body>
