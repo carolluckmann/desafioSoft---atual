@@ -42,7 +42,7 @@ function showTable(){
         <th>Tax</th>
         <th>Action</th>
     </tr>`
-    
+    let i = 0
     for (let category of categories) {
         table.innerHTML += `
             <tr>
@@ -51,10 +51,11 @@ function showTable(){
                 <td>${category.tax}</td>
                 <td class="button-category"><button onclick = "deleteCategory(${i})" class="cancel">Delete</button></td>
             </tr>`;
+            i++
     }
 }
 
-let i = 0;
+
 
 function deleteCategory(index){
     categories = categories.filter((_, i) => i !== index);
