@@ -98,7 +98,7 @@ function clearInputs(){
     document.getElementById("product").value = "";
     document.getElementById("amount").value = "";
     document.getElementById("unitPrice").value = "";
-    document.getElementById("category").value = "";
+    document.getElementById("categorySelect").value = "";
 }
 
 function deleteProduct(index){

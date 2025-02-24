@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="index.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/index.js" defer></script>
     <title>Desafio Home</title>
 </head>
 <body>
@@ -21,8 +21,8 @@
     <main>
         <div id="side-1">
             <div class="first-value"> 
-                <select class="product" name="product" id="productSelect" required>
-                    <option id="product" disabled selected hidden>
+                <select class="product" title="product" name="productSelect" id="productSelect">
+                    <option id="product" selected hidden>
                       Select product
                     </option>
                     <!-- <option value="Rice">Rice</option>
@@ -36,7 +36,7 @@
                 <input type="number" placeholder="Tax (%)" id="tax" disabled>
                 <input type="number" placeholder="Price ($)" id="price" disabled>
             </div>
-            <input onclick="addProduct" type="submit" class="add" id="addToCartButton" value="Add Product to Cart">
+            <button class="add" id="addToCartButton" >Add Product to Cart</button>
         </div>
         <div class="vl"></div>
         <div id="side-2">
@@ -76,14 +76,14 @@
         </div>
         <div id="buttons-cart">
             <input type="submit" value="Cancel" class="cancel">
-            <input type="submit" value="Finish" class="finish">   
+            <input onclick="openModal()" type="submit" value="Finish" class="finish">
+            <div id="modal-container" class="modal-container">
+                <div class="modal">
+                    <button class="close" id="close">X</button>
+                    <h1>Hello world</h1>
+                </div>
+            </div>   
         </div>
     </main>
-
-    <script>
-        function addProduct(){
-            localStorage.setItem("produto"), document.querySelector("#product").value
-        }
-    </script>
 </body>
 </html>

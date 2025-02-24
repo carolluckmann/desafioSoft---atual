@@ -109,11 +109,12 @@ table{
 
 .finish{
     width: 100%;
-    background-color: rgb(87, 87, 216);
+    background-color: #5757d8;
     border: 0;
     border-radius: 3px;
     margin-top: 1%;
     padding: 5px !important;
+    cursor: pointer;
 }
 
 .cancel{
@@ -121,7 +122,7 @@ table{
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    background-color: rgb(216, 216, 230);
+    background-color: #d8d8e6;
     border: 0;
     border-radius: 3px;
     margin-top: 1%;
@@ -144,7 +145,7 @@ table{
     justify-content: end;
     height: 80%;
     position: absolute;
-    color: rgb(90, 89, 89);
+    color: #5a5959;
 }
 
 #side-2-history{
@@ -163,7 +164,7 @@ table{
 }
 
 .vl {
-    border-left: 1px solid rgb(5, 5, 5);
+    border-left: 1px solid #050505;
     height: 80%;
     position: absolute;
     left: 50%;
@@ -189,4 +190,60 @@ select{
     width: 100.5%;
     height: 110%;
     color: gray;
+}
+
+.modal-container{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #0000004b;
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.modal{
+    width: 60%;
+    min-width:400px;
+    min-height: 200px;
+    background-color: #ffffff62;
+    backdrop-filter: blur(10px);
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.close{
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: #ffffff00;
+    color: #5757d8;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+@keyframes animate-modal {
+    from{
+        opacity: 0;
+        transform: translate3d(0, -20px, 0);
+    }
+
+    to{
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.modal-container.show{
+    display: flex;
+}
+
+.show .modal{
+    animation: animate-modal .3s;
 }
