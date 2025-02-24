@@ -29,6 +29,7 @@ function addCategory(){
     categories.push(category);
     localStorage.setItem("categories", JSON.stringify(categories));
     showTable();
+    clearInputs();
 }
 
 categoryButton.addEventListener("click", addCategory);
@@ -67,10 +68,15 @@ function showTable(){
                 <td class="td-align">${category.code}</td>
                 <td>${category.name}</td>
                 <td>${category.tax}%</td>
-                <td class="button-category"><button onclick = "deleteCategory(${i})" class="cancel">Delete</button></td>
+                <td><button onclick = "deleteCategory(${i})" class="cancel">Delete</button></td>
             </tr>`;
             i++
     }
+}
+
+function clearInputs(){
+    document.getElementById("category").value = "";
+    document.getElementById("tax").value = "";
 }
 
 function deleteCategory(index){

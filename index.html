@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="index.js"></script>
     <title>Desafio Home</title>
 </head>
 <body>
@@ -20,49 +21,53 @@
     <main>
         <div id="side-1">
             <div class="first-value"> 
-                <select class="product" name="product" id="product" required>
-                    <option value=" " disabled selected hidden>
+                <select class="product" name="product" id="productSelect" required>
+                    <option id="product" disabled selected hidden>
                       Select product
                     </option>
-                    <option value="Rice">Rice</option>
+                    <!-- <option value="Rice">Rice</option>
                     <option value="Beans">Beans</option>
                     <option value="Corn">Corn</option>
-                    <option value="Potato">Potato</option>
+                    <option value="Potato">Potato</option> -->
                   </select>
             </div>
             <div class="other-value">
-                <input type="number" placeholder="Amount">
-                <input type="number" placeholder="Tax (%)" disabled>
-                <input type="number" placeholder="Price ($)" disabled>
+                <input type="number" placeholder="Amount" id="amount">
+                <input type="number" placeholder="Tax (%)" id="tax" disabled>
+                <input type="number" placeholder="Price ($)" id="price" disabled>
             </div>
-            <input onclick="addProduct" type="submit" class="add" value="Add Product to Cart">
+            <input onclick="addProduct" type="submit" class="add" id="addToCartButton" value="Add Product to Cart">
         </div>
         <div class="vl"></div>
         <div id="side-2">
-            <table>
+            <table id="table">
              <tr>
                 <th>Product</th>
                 <th>Price</th>
                 <th>Amount</th>
                 <th>Total</th>
+                <th>Actions</th>
             </tr>
             <tr>
                 <td>Rice</td>
                 <td>$2.00</td>
                 <td>2</td>
                 <td>$4.00</td>
+                <td><button onclick = "deleteProduct()" class="cancel">Delete</button></td>
             </tr>
             <tr>
                 <td>Corn</td>
                 <td>$6.00</td>
                 <td>3</td>
                 <td>$18.00</td>
+                <td><button onclick = "deleteProduct()" class="cancel">Delete</button></td>
             </tr>
             <tr class="last">
                 <td>Potato</td>
                 <td>$0.50</td>
                 <td>21</td>
                 <td>$10.50</td>
+                <td><button onclick = "deleteProduct()" class="cancel">Delete</button></td>
             </tr>
         </div>
         <div id="final-result">

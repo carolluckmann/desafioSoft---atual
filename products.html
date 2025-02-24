@@ -21,24 +21,37 @@
     <main>
       <div id="side-1">
         <div class="first-value">
-          <input type="text" placeholder="Product" />
+          <input
+            type="text"
+            id="product"
+            maxlength="30"
+            placeholder="Product"
+          />
         </div>
         <div class="other-value">
-          <input type="number" placeholder="Amount" />
-          <input class="unit-price" type="number" placeholder="Unit price ($)" />
-          <select class="category" name="category" id="category" required>
-            <option value=" " disabled selected hidden>
+          <input type="number" id="amount" placeholder="Amount" />
+          <input
+            class="unit-price"
+            id="unitPrice"
+            type="number"
+            placeholder="Unit price ($)"
+          />
+          <select class="category" name="category" id="categorySelect">
+            <option value="Category" id="category" selected hidden>
               Select category
             </option>
-            <option value="food">Food</option>
-            <option value="car">Car</option>
           </select>
         </div>
-        <input type="submit" class="add" value="Add Product" />
+        <input
+          type="submit"
+          id="productButton"
+          class="add"
+          value="Add Product"
+        />
       </div>
       <div class="vl"></div>
       <div id="side-2">
-        <table>
+        <table id="table">
           <tr>
             <th>Code</th>
             <th>Product</th>
@@ -60,6 +73,9 @@
             <td>$9.00</td>
             <td>Food</td>
           </tr>
+          <td>
+            <button onclick="deleteProduct()" class="cancel">Delete</button>
+          </td>
         </table>
       </div>
     </main>
