@@ -86,7 +86,7 @@ function showTable(){
                 <td>${product.code}</td>
                 <td>${product.name}</td>
                 <td>${product.amount} units</td>
-                <td>$${product.price}</td>
+                <td>$${Number(product.price).toFixed(2)}</td>
                 <td>${product.category}</td>
                 <td><button onclick = "deleteProduct(${i})" class="cancel">Delete</button></td>
             </tr>`;

@@ -69,20 +69,27 @@
                 <td>$10.50</td>
                 <td><button onclick = "deleteProduct()" class="cancel">Delete</button></td>
             </tr>
-        </div>
-        <div id="final-result">
-            <p><b>Tax:</b> $6.50</p>
-            <p><b>Total:</b>$32.50</p>
-        </div>
-        <div id="buttons-cart">
-            <input type="submit" value="Cancel" class="cancel">
-            <input onclick="openModal()" type="submit" value="Finish" class="finish">
-            <div id="modal-container" class="modal-container">
-                <div class="modal">
-                    <button class="close" id="close">X</button>
-                    <h1>Hello world</h1>
+            <div class="items-result">
+                <div class="final-result2" id="taxPrice">
+                    <p><b>Tax:</b></p>
+                    <p>$6.30</p>
                 </div>
-            </div>   
+                <div class="final-result" id="total">
+                    <p><b>Total:</b></p>
+                    <p>$32.50</p>
+                </div>
+            </div>
+            <div id="buttons-cart">
+                <input onclick="cancelPurchase()" type="submit" value="Cancel" class="cancel">
+                <input onclick="openModal()" type="submit" value="Finish" class="finish">
+                <div id="modal-container" class="modal-container">
+                    <div class="modal">
+                        <button class="close" id="close">x</button>
+                        <h1>Details</h1>
+                        <a href="history.html" class="continue">Continue</a>
+                    </div>
+                </div>   
+            </div>
         </div>
     </main>
 </body>
