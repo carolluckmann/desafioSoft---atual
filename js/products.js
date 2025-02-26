@@ -22,18 +22,21 @@ function showCategories(){
 let products = [];
 
 function addProducts(){
-    const forbbiden = /<\/?[a-z][\s\S]*>/i;
     if(!validInput()){
         alert ("The fields should be filled!")
         return true
-    } else if (forbbiden.test(productName.value)) {
-        alert("Invalid input!");
-        productName.value = " ";
-        amount.value = " ";
-        unitPrice.value = " ";
-        category.value = " ";
-        return false;
-    }
+    } else if (!(/^[a-zA-Z\s]*$/g.test(productName.value))) {
+        alert("Product name must be a word.")
+        return false
+    } 
+
+    let existingItem = products.findIndex((product) => product.name === productName.value);
+  
+  if (existingItem !== -1) {
+    alert("This product already exists!");
+    clearInputs();
+    return true;
+  }
     const product = {
         code: products.length+1,
         name: productName.value,

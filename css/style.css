@@ -112,6 +112,7 @@ table{
     padding: 5px !important;
     cursor: pointer;
     color: #ffffff;
+    text-decoration: none;
 }
 
 .cancel{
@@ -200,7 +201,6 @@ select{
     height: 110%;
     color: gray;
 }
-
 .modal-container{
     width: 100vw;
     height: 100vh;
@@ -254,5 +254,5 @@ select{
 }
 
 .show .modal{
-    animation: animate-modal 1s;
+    animation: animate-modal 0.5s;
 }

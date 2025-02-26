@@ -43,15 +43,17 @@ productSelect.addEventListener("change", findProductInfo);
 let items = [];
 
 function addItems() {
-  const forbidden = /<\/?[a-z][\s\S]*>/i;
   if (!validInput()) {
     alert("The fields should be filled!");
     return;
-  } else if (forbidden.test(productSelect.value)) {
-    alert("Invalid input!");
-    clearInputs();
-    return;
-  } else if (!amountProduct()) {
+  } 
+ else if (amount.value <= 0) {
+    alert("Amount must be a positive number.");
+    categoryName.value = " ";
+    tax.value = " ";
+    return false;
+} 
+  else if (!amountProduct()) {
     alert("It's impossible to add this amount");
     return;
   }
@@ -179,8 +181,11 @@ function showResult() {
 }
 
 function cancelPurchase() {
-  localStorage.setItem("items", JSON.stringify([]));
-
+  const userConfirmed = confirm("Are you sure? This action will remove all the items of your cart!");
+  if (userConfirmed) {
+    localStorage.setItem("items", JSON.stringify([]));
+  }
+  
   getItems();
   showTable();
   showResult();
@@ -199,7 +204,20 @@ function finishPurchase() {
     products: [...items],
   };
   history.push(purchase);
-  localStorage.setItem("history", JSON.stringify(history));
+  //Tentando diminuir do estoque
+  // localStorage.setItem("history", JSON.stringify(history));
+  // let products = JSON.parse(localStorage.getItem("products")) || [];
+
+  // items.forEach((cartItem) => {
+  //   let productIndex = products.findIndex((p) => p.name === cartItem.name);
+  //   if (productIndex !== -1) {
+  //     products[productIndex].amount -= cartItem.amount; 
+  //     if (products[productIndex].amount < 0) {
+  //       products[productIndex].amount = 0; 
+  //     }
+  //   }
+  // });
+  // localStorage.setItem("products", JSON.stringify(products));
   localStorage.setItem("items", JSON.stringify([]));
   window.location.href = `./history.html`;
 }
