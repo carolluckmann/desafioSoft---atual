@@ -22,16 +22,16 @@ header{
 
 .logo {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: larger;
+    font-size: 25px;
     font-weight: bold;
 }
 
 header a{
-    color: black;
-    text-decoration: none;
+    color: #ffffff;
+    text-decoration:solid;
     display: inline-block;
     padding: 20px;
-    font-size: small;
+    font-size: normal;
     background-color: rgb(87, 87, 217);
 }
 
@@ -85,7 +85,6 @@ table{
     height: 10%;
 }
 
-
 .add {
     cursor: pointer;
     width: 100.5%;
@@ -96,6 +95,7 @@ table{
     margin-top: 1%;
     padding: 2px !important;
     height: 3%;
+    color: #ffffff;
 }
 
 .first-value,
@@ -111,6 +111,7 @@ table{
     margin-top: 1%;
     padding: 5px !important;
     cursor: pointer;
+    color: #ffffff;
 }
 
 .cancel{
@@ -253,14 +254,5 @@ select{
 }
 
 .show .modal{
-    animation: animate-modal .3s;
-}
-
-.continue{
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: end;
-    position: absolute;
-    color: #5a5959;
+    animation: animate-modal 1s;
 }

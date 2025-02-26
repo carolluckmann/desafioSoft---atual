@@ -7,6 +7,7 @@ const total = document.getElementById("total");
 const addToCartButton = document.getElementById("addToCartButton");
 const finalResult = document.getElementById("final-result");
 const taxPrice = document.getElementById("taxPrice");
+const purchaseHistory = document.getElementById("purchaseHistory");
 
 let categories = [];
 
@@ -50,8 +51,10 @@ function addItems() {
     alert("Invalid input!");
     clearInputs();
     return;
+  } else if (!amountProduct()) {
+    alert("It's impossible to add this amount");
+    return;
   }
-
   let existingItem = items.findIndex(
     (item) => item.name === productSelect.value
   );
@@ -71,6 +74,7 @@ function addItems() {
     items.push(item);
   }
   localStorage.setItem("items", JSON.stringify(items));
+
   showTable();
   clearInputs();
 }
@@ -86,6 +90,24 @@ function getItems() {
   items = JSON.parse(localStorage.getItem("items")) ?? [];
 }
 
+function amountProduct() {
+  let productAmount =
+    products[products.findIndex((p) => p.name == productSelect.value)].amount;
+  let productIndexOnCart = items.findIndex(
+    (p) => p.name == productSelect.value
+  );
+  let onCart = 0;
+  if (productIndexOnCart !== -1) {
+    onCart = items[productIndexOnCart].amount;
+  }
+  if (Number(amount.value) + Number(onCart) > Number(productAmount)) {
+    console.log("oi");
+    return false;
+  } else {
+    return true;
+  }
+}
+
 function validInput() {
   if (!amount.value) {
     return false;
@@ -95,14 +117,19 @@ function validInput() {
 }
 
 function showTable() {
+  if (items.length === 0) {
+    table.innerHTML = `There's no products yet!`;
+    return;
+  }
   table.innerHTML = `<tr>
-    <th>Product</th>
-    <th>Amount</th>
-    <th>Price</th>
-    <th>Tax</th>
-    <th>Total</th>
-    <th>Action</th>
+        <th>Product</th>
+        <th>Amount</th>
+        <th>Price</th>
+        <th>Tax</th>
+        <th>Total</th>
+        <th>Action</th>
     </tr>`;
+
   let i = 0;
   for (let item of items) {
     table.innerHTML += `
@@ -137,8 +164,8 @@ function deleteProduct(index) {
 }
 
 function showResult() {
-  let cartTotal = 0;
-  let fullTax = 0;
+  cartTotal = 0;
+  fullTax = 0;
 
   for (let item of items) {
     cartTotal = Number(cartTotal) + Number(item.total);
@@ -159,16 +186,25 @@ function cancelPurchase() {
   showResult();
 }
 
-function openModal() {
-  const modal = document.getElementById("modal-container");
-  modal.classList.add("show");
-  modal.addEventListener("click", (e) => {
-    if (e.target.id == "modal-container" || e.target.id == "close") {
-      modal.classList.remove("show");
-      localStorage.fechaModal = "modal-container";
-    }
-  });
+function finishPurchase() {
+  if (items.length === 0) {
+    alert("Your cart is empty!");
+    return;
+  }
+  let history = JSON.parse(localStorage.getItem("history")) || [];
+  let purchase = {
+    code: history.length + 1,
+    tax: Number(fullTax).toFixed(2),
+    total: Number(Number(fullTax) + Number(cartTotal)).toFixed(2),
+    products: [...items],
+  };
+  history.push(purchase);
+  localStorage.setItem("history", JSON.stringify(history));
+  localStorage.setItem("items", JSON.stringify([]));
+  window.location.href = `./history.html`;
 }
+
+document.getElementById("finishButton").addEventListener("click", finishPurchase);
 
 getItems();
 deleteProduct();

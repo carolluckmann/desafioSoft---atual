@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/history.js" defer></script>
     <title>History</title>
   </head>
   <body>
@@ -18,7 +19,7 @@
       </div>
   </header>
   <div id="side-2-history">
-    <table>
+    <table id="historyTable">
       <tr>
         <th>
           <b>Code</b>
@@ -40,7 +41,15 @@
           <td>
             $20.00
           </td>
-          <td class="button-history"><input  type="submit" value="View" class="cancel"></td>
+          <td class="button-history">
+            <input onclick="openModal()" type="submit" value="View" class="finish">
+            <div id="modal-container" class="modal-container">
+              <div class="modal">
+                <button class="close" id="close">x</button>
+                <h1>Details</h1>
+              </div>
+            </div>   
+          </td>
         </tr>
         <tr>
             <td>
@@ -52,7 +61,15 @@
             <td>
               $10.00
             </td>
-            <td class="button-history"><input type="submit" value="View" class="cancel"></td>
+            <td class="button-history">
+              <input onclick="openModal()" type="submit" value="View" class="finish">
+              <div id="modal-container" class="modal-container">
+                <div class="modal">
+                  <button class="close" id="close">x</button>
+                  <h1>Details</h1>
+                </div>
+              </div>   
+            </td>
           </tr>
     </table>
   </div>
