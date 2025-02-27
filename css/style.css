@@ -108,7 +108,7 @@ table{
     background-color: #5757d8;
     border: 0;
     border-radius: 3px;
-    margin-top: 1%;
+    margin-top: 10%;
     padding: 5px !important;
     cursor: pointer;
     color: #ffffff;
@@ -125,7 +125,9 @@ table{
     border-radius: 3px;
     margin-top: 1%;
     padding: 5px !important;
-    float: right;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10%;
 }
 
 #buttons-cart{
@@ -219,7 +221,7 @@ select{
     min-width:400px;
     min-height: 200px;
     background-color: #ffffff62;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(40px);
     padding: 50px;
     border-radius: 10px;
 }

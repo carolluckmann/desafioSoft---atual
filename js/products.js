@@ -33,9 +33,9 @@ function addProducts(){
     let existingItem = products.findIndex((product) => product.name === productName.value);
   
   if (existingItem !== -1) {
-    alert("This product already exists!");
+    alert("This product already exists");
     clearInputs();
-    return true;
+    return false;
   }
     const product = {
         code: products.length+1,
@@ -91,7 +91,7 @@ function showTable(){
                 <td>${product.amount} units</td>
                 <td>$${Number(product.price).toFixed(2)}</td>
                 <td>${product.category}</td>
-                <td><button onclick = "deleteProduct(${i})" class="cancel">Delete</button></td>
+                <td><button onclick = "deleteProduct(${i})" class="cancel">Delete</button>
             </tr>`;
             i++
     }
@@ -105,16 +105,16 @@ function clearInputs(){
 }
 
 function deleteProduct(index){
-    products = products.filter((_, i) => i !== index);
-
-    localStorage.setItem("products", JSON.stringify(products))
-
+    if (confirm("Are you sure? This action will remove this item of your stock!") == true) {
+        products = products.filter((_, i) => i !== index);
+        localStorage.setItem("products", JSON.stringify(products))
+      } 
+   
     getProducts();
     showTable();
 }
 
 getProducts();
-deleteProduct();
 showTable();
 getCategories();
 showCategories();

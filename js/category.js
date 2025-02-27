@@ -19,8 +19,9 @@ function addCategory() {
   } else if (!/^[a-zA-Z\s]*$/g.test(categoryName.value)) {
     alert("Category name must be a word.");
     return false;
-  }   let existingItem = categories.findIndex((category) => category.name === categoryName.value);
+  }   
   
+  let existingItem = categories.findIndex((category) => category.name === categoryName.value);
   if (existingItem !== -1) {
     alert("This category already exists!");
     clearInputs();
@@ -72,7 +73,7 @@ function showTable() {
                 <td class="td-align">${category.code}</td>
                 <td>${category.name}</td>
                 <td>${category.tax}%</td>
-                <td><button onclick = "deleteCategory(${i})" class="cancel">Delete</button></td>
+                <td><button onclick = "deleteCategory(${i})" class="cancel">Delete</button>
             </tr>`;
     i++;
   }
@@ -83,19 +84,30 @@ function clearInputs() {
   document.getElementById("tax").value = "";
 }
 
+let products = [];
+
+function getProducts(){
+  products = JSON.parse(localStorage.getItem("products")) ?? [];
+}
+
 function deleteCategory(index) {
-  categories = categories.filter((_, i) => i !== index);
+  getProducts();
 
-  localStorage.setItem("categories", JSON.stringify(categories));
-
+  const product = products.findIndex((product) => product.category === categoryName.name);
+  
+  if (product !== -1) {
+    alert("You can't delete this category: you have products using it.");
+    return true;
+  } else {
+    categories = categories.filter((_, i) => i !== index);
+    localStorage.setItem("categories", JSON.stringify(categories));
+  }
+  
+  console.log(product);
   getCategories();
   showTable();
 }
 
-//Teste para não permitir alteração pelo inspecionar
-document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-});
 
 getCategories();
 deleteCategory();

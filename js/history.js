@@ -1,4 +1,11 @@
 const purchaseDetails = document.getElementById("purchaseDetails");
+const date = new Date();
+const day = String(date.getDate()).padStart(2, '0');
+const month = String(date.getMonth() + 1).padStart(2, '0');
+const year = String(date.getFullYear()).padStart(2, '0');
+const fullDate = `${day}/${month}/${year}`
+
+
 
 function openModal() {
   const modal = document.getElementById("modal-container");
@@ -41,7 +48,7 @@ function getPurchase() {
     historyTable.innerHTML += `
            <tr>
                 <td>${item.code}</td>
-                <td>$${item.tax}</td>
+                <td>$${Number(item.tax).toFixed(2)}</td>
                 <td>$${Number(item.total).toFixed(2)}</td>
                 <td class="button-history">
                 <input onclick="getPurchaseDetails(${index})" type="submit" value="View" class="finish">
@@ -60,7 +67,7 @@ function getPurchaseDetails(index) {
   let detailsContainer = document.getElementById("purchaseDetails");
   
   detailsContainer.innerHTML = `
-    <h3>Purchase #${purchase.code} | Tax: $${purchase.tax} | Total: $${purchase.total}</h3>
+    <h2><p>Purchase #${purchase.code}</p></h2> <br> <h3>Date: ${fullDate} | Tax: $${purchase.tax} | Total: $${purchase.total}</h3>
     <br>
     <h5>Your products:</h5>
     <br>
@@ -78,9 +85,9 @@ function getPurchaseDetails(index) {
       <tr>
         <td>${product.name}</td>
         <td>${product.amount}</td>
-        <td>$${product.price}</td>
-        <td>$${product.tax}</td>
-        <td>$${product.total}</td>
+        <td>$${Number(product.price).toFixed(2)}</td>
+        <td>${product.tax}%</td>
+        <td>$${Number(product.total).toFixed(2)}</td>
       </tr>
       `
       )
