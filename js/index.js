@@ -221,6 +221,18 @@ function finishPurchase() {
 
 document.getElementById("finishButton").addEventListener("click", finishPurchase);
 
+setInterval(() => {
+  if (amount.type !== "number") {
+      amount.type = "number";
+  }
+  if (tax.type !== "number") {
+      tax.type = "number";
+  }
+  if (price.type !== "number") {
+    price.type = "number";
+}
+}, 500);
+
 getItems();
 deleteProduct();
 showTable();

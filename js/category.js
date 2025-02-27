@@ -16,7 +16,7 @@ function addCategory() {
     categoryName.value = " ";
     tax.value = " ";
     return false;
-  } else if (!/^[a-zA-Z\s]*$/g.test(categoryName.value)) {
+  } else if (!/^[a-zA-Z\sáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]*$/g.test(categoryName.value)) {
     alert("Category name must be a word.");
     return false;
   }   
@@ -92,9 +92,11 @@ function getProducts(){
 
 function deleteCategory(index) {
   getProducts();
-
-  const product = products.findIndex((product) => product.category === categoryName.name);
+  getCategories();
   
+  const product = products.findIndex((product) => product.category === categories[index].name);
+  console.log(products)
+  console.log(product)
   if (product !== -1) {
     alert("You can't delete this category: you have products using it.");
     return true;
@@ -102,13 +104,18 @@ function deleteCategory(index) {
     categories = categories.filter((_, i) => i !== index);
     localStorage.setItem("categories", JSON.stringify(categories));
   }
-  
-  console.log(product);
-  getCategories();
+
   showTable();
 }
 
+setInterval(() => {
+  if (categoryName.type !== "text") {
+      categoryName.type = "text";
+  }
+  if (tax.type !== "number") {
+      tax.type = "number";
+  }
+}, 500);
 
 getCategories();
-deleteCategory();
 showTable();

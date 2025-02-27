@@ -25,7 +25,7 @@ function addProducts(){
     if(!validInput()){
         alert ("The fields should be filled!")
         return true
-    } else if (!(/^[a-zA-Z\s]*$/g.test(productName.value))) {
+    } else if (!(/^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]*$/g.test(productName.value))) {
         alert("Product name must be a word.")
         return false
     } 
@@ -104,15 +104,39 @@ function clearInputs(){
     document.getElementById("categorySelect").value = "";
 }
 
+let items = [];
+
+function getItems() {
+    items = JSON.parse(localStorage.getItem("items")) ?? [];
+  }
+
 function deleteProduct(index){
-    if (confirm("Are you sure? This action will remove this item of your stock!") == true) {
+    getProducts();
+    getItems();
+    const item = items.findIndex((item) => item.name === products[index].name);
+    if (item !== -1) {
+        alert("You can't delete this product: you have it on your cart.");
+        return true;
+    }
+    else if (confirm("Are you sure? This action will remove this item of your stock!") == true) {
         products = products.filter((_, i) => i !== index);
         localStorage.setItem("products", JSON.stringify(products))
-      } 
+    } 
    
-    getProducts();
     showTable();
 }
+
+setInterval(() => {
+    if (productName.type !== "text") {
+        productName.type = "text";
+    }
+    if (amount.type !== "number") {
+        amount.type = "number";
+    }
+    if (unitPrice.type !== "number") {
+        unitPrice.type = "number";
+    }
+}, 500);
 
 getProducts();
 showTable();
