@@ -24,6 +24,9 @@ function getProducts() {
 function showProducts() {
   products.forEach((p) => {
     productSelect.innerHTML += `<option id="product" value="${p.name}">${p.name}</option>`;
+    if(p.amount <= 0){
+      productSelect.innerHTML = `<option id="product" value="" selected hidden>Select product</option>`;
+    }
   });
 }
 
@@ -45,12 +48,12 @@ function addItems() {
   } 
  else if (amount.value <= 0) {
     alert("Amount must be a positive number.");
-    categoryName.value = " ";
-    tax.value = " ";
+    clearInputs();
     return false;
 } 
   else if (!amountProduct()) {
     alert("It's impossible to add this amount, we don't have it in stock");
+    clearInputs();
     return;
   }
   let existingItem = items.findIndex(
@@ -209,9 +212,6 @@ function finishPurchase() {
     let productIndex = products.findIndex((p) => p.name === cartItem.name);
     if (productIndex !== -1) {
       products[productIndex].amount -= cartItem.amount; 
-      if (products[productIndex].amount < 0) {
-        products[productIndex].amount = 0; 
-      }
     }
   });
   localStorage.setItem("products", JSON.stringify(products));
