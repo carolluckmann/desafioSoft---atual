@@ -136,11 +136,6 @@ setInterval(() => {
     if (unitPrice.type !== "number") {
         unitPrice.type = "number";
     }
-    const currentOptions = Array.from(category.options).map(opt => opt.value);
-    const correctOptions = categories.map(c => c.name);
-    if (JSON.stringify(currentOptions) !== JSON.stringify(correctOptions)) {
-        showCategories();
-    }
 }, 500);
 
 getProducts();
