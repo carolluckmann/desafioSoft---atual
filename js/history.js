@@ -1,11 +1,4 @@
 const purchaseDetails = document.getElementById("purchaseDetails");
-const date = new Date();
-const day = String(date.getDate()).padStart(2, '0');
-const month = String(date.getMonth() + 1).padStart(2, '0');
-const year = String(date.getFullYear()).padStart(2, '0');
-const fullDate = `${day}/${month}/${year}`
-
-
 
 function openModal() {
   const modal = document.getElementById("modal-container");
@@ -67,7 +60,7 @@ function getPurchaseDetails(index) {
   let detailsContainer = document.getElementById("purchaseDetails");
   
   detailsContainer.innerHTML = `
-    <h2><p>Purchase #${purchase.code}</p></h2> <br> <h3>Date: ${fullDate} | Tax: $${purchase.tax} | Total: $${purchase.total}</h3>
+    <h2><p>Purchase #${purchase.code}</p></h2> <br> <h3> Tax: $${purchase.tax} | Total: $${purchase.total}</h3>
     <br>
     <h5>Your products:</h5>
     <br>
