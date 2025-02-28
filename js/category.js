@@ -18,6 +18,7 @@ function addCategory() {
     return false;
   } else if (!/^[a-zA-Z\sáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]*$/g.test(categoryName.value)) {
     alert("Category name must be a word.");
+    clearInputs();
     return false;
   }   
   

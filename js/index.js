@@ -30,8 +30,9 @@ function showProducts() {
 function findProductInfo() {
   const product = products.find((p) => p.name === productSelect.value);
   const category = categories.find((c) => c.name === product.category);
-  tax.value = `${category.tax}`;
-  price.value = `${Number(product.price).toFixed(2)}`;
+ 
+  tax.value = `${category.tax}%`;
+  price.value = `$${Number(product.price).toFixed(2)}`;
 }
 productSelect.addEventListener("change", findProductInfo);
 
@@ -64,9 +65,9 @@ function addItems() {
     const item = {
       name: productSelect.value,
       amount: Number(amount.value),
-      price: Number(price.value),
-      tax: Number(tax.value),
-      total: Number(amount.value) * Number(price.value),
+      price: Number(price.value.toString().replace("$", "")),
+      tax: Number(tax.value.toString().replace("%", "")),
+      total: Number(amount.value) * Number(price.value.toString().replace("$", "")),
     };
     items.push(item);
   }
@@ -225,11 +226,11 @@ setInterval(() => {
   if (amount.type !== "number") {
       amount.type = "number";
   }
-  if (tax.type !== "number") {
-      tax.type = "number";
+  if (tax.type !== "text") {
+      tax.type = "text";
   }
-  if (price.type !== "number") {
-    price.type = "number";
+  if (price.type !== "text") {
+    price.type = "text";
 }
 }, 500);
 

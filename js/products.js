@@ -27,6 +27,7 @@ function addProducts(){
         return true
     } else if (!(/^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]*$/g.test(productName.value))) {
         alert("Product name must be a word.")
+        clearInputs();
         return false
     } 
 

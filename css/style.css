@@ -163,7 +163,8 @@ table{
 #side-2-history{
     display: flex;
     padding: 1%;
-    width: 50%;
+    width: 98%;
+    margin-right: 10%;
 }
 
 .button-history{
