@@ -231,6 +231,11 @@ setInterval(() => {
   if (price.type !== "number") {
     price.type = "number";
 }
+const currentOptions = Array.from(productSelect.options).map(opt => opt.value);
+const correctOptions = products.map(p => p.name);
+if (JSON.stringify(currentOptions) !== JSON.stringify(correctOptions)) {
+    showProducts();
+}
 }, 500);
 
 getItems();
