@@ -16,7 +16,7 @@ function addCategory() {
     categoryName.value = " ";
     tax.value = " ";
     return false;
-  } else if (!/^[a-zA-Z\sáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]*$/g.test(categoryName.value)) {
+  } else if (!/^[0-1a-zA-Z\sáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]*$/g.test(categoryName.value)) {
     alert("Category name must be a word.");
     clearInputs();
     return false;

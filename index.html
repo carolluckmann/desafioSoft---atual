@@ -32,7 +32,7 @@
                   </select>
             </div>
             <div class="other-value">
-                <input type="number" placeholder="Amount" id="amount">
+                <input type="number" placeholder="Amount (only integer value)" id="amount" oninput="this.value = this.value.replace(/[^0-9-]/g, ''); this.value = this.value.replace(/(\..*)\-/g, '$1');">
                 <input type="text" placeholder="Tax (%)" id="tax" disabled>
                 <span id="taxLabel"></span>
                 <input type="text" placeholder="Price ($)" id="price" disabled>

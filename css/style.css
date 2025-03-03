@@ -221,7 +221,7 @@ select{
     width: 60%;
     min-width:400px;
     min-height: 200px;
-    background-color: #ffffff62;
+    background-color: #ffffff;
     backdrop-filter: blur(40px);
     padding: 50px;
     border-radius: 10px;

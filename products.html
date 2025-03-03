@@ -29,7 +29,7 @@
           />
         </div>
         <div class="other-value">
-          <input type="number" id="amount" placeholder="Amount" />
+          <input type="number" id="amount" placeholder="Amount (only integer value)" oninput="this.value = this.value.replace(/[^0-9-]/g, ''); this.value = this.value.replace(/(\..*)\-/g, '$1');"/>
           <input
             class="unit-price"
             id="unitPrice"

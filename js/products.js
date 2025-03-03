@@ -24,7 +24,7 @@ function addProducts() {
     alert("The fields should be filled!");
     return true;
   } else if (
-    !/^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]*$/g.test(productName.value)
+    !/^[0-1a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]*$/g.test(productName.value)
   ) {
     alert("Product name must be a word.");
     clearInputs();
@@ -33,7 +33,7 @@ function addProducts() {
     alert("Price must be a positive number.");
     clearInputs();
     return false;
-  } else if (amount.value <= 0) {
+  } else if (amount.value <= 0 ) {
     alert("Amount must be a positive number.");
     clearInputs();
     return false;
