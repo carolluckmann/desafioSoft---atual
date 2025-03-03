@@ -7,7 +7,7 @@ let categories = [];
 
 function addCategory() {
   getCategories();
-
+  
   if (!validInput()) {
     alert("The fields should be filled!");
     return true;
@@ -22,18 +22,19 @@ function addCategory() {
     return false;
   }   
   
-  let existingItem = categories.findIndex((category) => category.name === categoryName.value);
+  let existingItem = categories.findIndex((category) => category?.name === categoryName.value);
   if (existingItem !== -1) {
     alert("This category already exists!");
     clearInputs();
     return true;
   }
-  
+
   const category = {
+    code: categories.length + 1,
     name: categoryName.value,
     tax: tax.value,
-    code: categories.length + 1,
   };
+  
   categories.push(category);
   localStorage.setItem("categories", JSON.stringify(categories));
   showTable();
@@ -62,21 +63,23 @@ function validInput() {
 
 function showTable() {
   table.innerHTML = `<tr>
-        <th>Code</th>
-        <th>Category</th>
-        <th>Tax</th>
-        <th>Action</th>
-    </tr>`;
+  <th>Code</th>
+  <th>Category</th>
+  <th>Tax</th>
+  <th>Action</th>
+  </tr>`;
   let i = 0;
+  categories = categories.filter(category => category && category.name);
   for (let category of categories) {
     table.innerHTML += `
-            <tr>
-                <td class="td-align">${category.code}</td>
-                <td>${category.name}</td>
-                <td>${category.tax}%</td>
-                <td><button onclick = "deleteCategory(${i})" class="cancel">Delete</button>
-            </tr>`;
+    <tr>
+    <td class="td-align">${category.code}</td>
+    <td>${category.name}</td>
+    <td>${category.tax}%</td>
+    <td><button onclick = "deleteCategory(${i})" class="cancel">Delete</button>
+    </tr>`;
     i++;
+    console.log(category.code)
   }
 }
 
@@ -93,11 +96,10 @@ function getProducts(){
 
 function deleteCategory(index) {
   getProducts();
-  getCategories();
   
   const product = products.findIndex((product) => product.category === categories[index].name);
-  console.log(products)
-  console.log(product)
+  getCategories();
+
   if (product !== -1) {
     alert("You can't delete this category: you have products using it.");
     return true;
