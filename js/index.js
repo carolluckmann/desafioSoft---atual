@@ -22,12 +22,18 @@ function getProducts() {
 }
 
 function showProducts() {
+  let selectedValue = productSelect.value;
+  productSelect.innerHTML = "<option value='' selected hidden>Select a product</option>";
   products.forEach((p) => {
-    productSelect.innerHTML += `<option id="product" value="${p.name}">${p.name}</option>`;
+    let option = document.createElement("option");
+        option.value = p.name;
+        option.textContent = p.name;
+        productSelect.appendChild(option);
     if(p.amount <= 0){
       productSelect.innerHTML = `<option id="product" value="" selected hidden>Select product</option>`;
     }
   });
+  productSelect.value = selectedValue; 
 }
 
 function findProductInfo() {
@@ -45,7 +51,10 @@ function addItems() {
   if (!validInput()) {
     alert("The fields should be filled!");
     return;
-  } 
+  } else if (productSelect.value == null || productSelect.value == ""){
+    alert("Select a product before continue...")
+    return true;
+  }
  else if (amount.value <= 0) {
     alert("Amount must be a positive number.");
     clearInputs();
@@ -231,8 +240,15 @@ setInterval(() => {
   }
   if (price.type !== "text") {
     price.type = "text";
+} 
+const currentOptions = Array.from(productSelect.options).map(opt => opt.value);
+const correctOptions = products.map(p => p.name);
+if (JSON.stringify(currentOptions) !== JSON.stringify(correctOptions)) {
+  showProducts();
 }
-}, 500);
+}, 500
+);
+
 
 getItems();
 deleteProduct();

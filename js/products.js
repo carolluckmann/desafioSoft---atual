@@ -12,9 +12,15 @@ function getCategories() {
 }
 
 function showCategories() {
-  categories.forEach((c) => {
-    category.innerHTML += `<option id="categorySelect" value="${c.name}">${c.name}</option>`;
-  });
+  let selectedValue = category.value;
+    category.innerHTML = "<option value='' selected hidden>Select a category</option>";
+    categories.forEach((c) => {
+        let option = document.createElement("option");
+        option.value = c.name;
+        option.textContent = c.name;
+        category.appendChild(option);
+    });
+    category.value = selectedValue; 
 }
 
 let products = [];
@@ -22,6 +28,10 @@ let products = [];
 function addProducts() {
   if (!validInput()) {
     alert("The fields should be filled!");
+    clearInputs();
+    return true;
+  } else if (category.value == null || category.value == "") {
+    alert("Select a category before continue...");
     return true;
   } else if (
     !/^[0-9a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]*$/g.test(productName.value)
@@ -33,7 +43,7 @@ function addProducts() {
     alert("Price must be a positive number.");
     clearInputs();
     return false;
-  } else if (amount.value <= 0 ) {
+  } else if (amount.value <= 0) {
     alert("Amount must be a positive number.");
     clearInputs();
     return false;
@@ -49,7 +59,7 @@ function addProducts() {
     return false;
   }
   const product = {
-    code: products.length > 0 ? products[products.length -1].code + 1 : 1,
+    code: products.length > 0 ? products[products.length - 1].code + 1 : 1,
     name: productName.value,
     amount: amount.value,
     price: unitPrice.value,
@@ -125,9 +135,23 @@ function getItems() {
   items = JSON.parse(localStorage.getItem("items")) ?? [];
 }
 
+let history = [];
+
+function getPurchase() {
+  history = JSON.parse(localStorage.getItem("history")) ?? [];
+}
+
 function deleteProduct(index) {
   getProducts();
   getItems();
+  getPurchase();
+
+  const histories = history.findIndex((item) => item.name === products[index].name);
+  if(histories !== -1){
+    alert("You can't delete this product: you have it on your history.");
+    return true;
+  }
+
   const item = items.findIndex((item) => item.name === products[index].name);
   if (item !== -1) {
     alert("You can't delete this product: you have it on your cart.");
@@ -153,7 +177,13 @@ setInterval(() => {
   if (unitPrice.type !== "number") {
     unitPrice.type = "number";
   }
-}, 500);
+  const currentOptions = Array.from(category.options).map(
+    (opt) => opt.value
+  );
+  const correctOptions = categories.map((c) => c.name);
+  if (JSON.stringify(currentOptions) !== JSON.stringify(correctOptions)) {
+    showCategories();
+}}, 500);
 
 getProducts();
 showTable();

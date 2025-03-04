@@ -22,9 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+let history = [];
+
 function getPurchase() {
   let historyTable = document.getElementById("historyTable");
-  let history = JSON.parse(localStorage.getItem("history")) ?? [];
+  history = JSON.parse(localStorage.getItem("history")) ?? [];
 
   if (history.length === 0) {
     historyTable.innerHTML = "<p>No purchase history available.</p>";
