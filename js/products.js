@@ -135,28 +135,17 @@ function getItems() {
   items = JSON.parse(localStorage.getItem("items")) ?? [];
 }
 
-let history = [];
-
-function getPurchase() {
-  history = JSON.parse(localStorage.getItem("history")) ?? [];
-}
-
 function deleteProduct(index) {
   getProducts();
   getItems();
-  getPurchase();
-
-  const histories = history.findIndex((item) => item.name === products[index].name);
-  if(histories !== -1){
-    alert("You can't delete this product: you have it on your history.");
-    return true;
-  }
 
   const item = items.findIndex((item) => item.name === products[index].name);
   if (item !== -1) {
     alert("You can't delete this product: you have it on your cart.");
     return true;
-  } else if (
+  } 
+  
+  else if (
     confirm("Are you sure? This action will remove this item of your stock!") ==
     true
   ) {
