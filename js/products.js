@@ -24,7 +24,7 @@ function addProducts() {
     alert("The fields should be filled!");
     return true;
   } else if (
-    !/^[0-1a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]*$/g.test(productName.value)
+    !/^[0-9a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]*$/g.test(productName.value)
   ) {
     alert("Product name must be a word.");
     clearInputs();
@@ -49,7 +49,7 @@ function addProducts() {
     return false;
   }
   const product = {
-    code: products.length + 1,
+    code: products.length > 0 ? products[products.length -1].code + 1 : 1,
     name: productName.value,
     amount: amount.value,
     price: unitPrice.value,

@@ -31,8 +31,13 @@ header a{
     text-decoration:solid;
     display: inline-block;
     padding: 20px;
+    transition: .5s;
     font-size: normal;
     background-color: rgb(87, 87, 217);
+}
+
+a:hover{
+    color: #ca9df5;
 }
 
 main {
@@ -88,7 +93,7 @@ table{
 .add {
     cursor: pointer;
     width: 100.5%;
-    background-color: rgb(87, 87, 216);
+    background-color: #5757d8;
     border: 0;
     border-radius: 3px;
     margin-left: 1%;
@@ -96,6 +101,11 @@ table{
     padding: 2px !important;
     height: 3%;
     color: #ffffff;
+    transition: .5s;
+}
+
+.add:hover{
+    background-color: #7657e7;
 }
 
 .first-value,
@@ -109,10 +119,16 @@ table{
     border: 0;
     border-radius: 3px;
     margin-top: 10%;
+    transition: .5s;
     padding: 5px !important;
     cursor: pointer;
     color: #ffffff;
     text-decoration: none;
+}
+
+.finish:hover{
+    color: #ffffff;
+    background-color: #7657e7;
 }
 
 .cancel{
@@ -122,12 +138,18 @@ table{
     width: 100%;
     background-color: #d8d8e6;
     border: 0;
+    transition: .5s;
     border-radius: 3px;
     margin-top: 1%;
     padding: 5px !important;
     align-items: center;
     justify-content: center;
     margin-top: 10%;
+}
+
+.cancel:hover{
+    color: #ffffff;
+    background-color: #a3a0a5;
 }
 
 #buttons-cart{
@@ -137,6 +159,7 @@ table{
     position: absolute;
     bottom: 2%;
     gap: 10%;
+    transition: .5s;
     right: 1%;
     width: 20%;
 }
@@ -259,3 +282,4 @@ select{
 .show .modal{
     animation: animate-modal 0.5s;
 }
+

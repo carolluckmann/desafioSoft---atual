@@ -16,7 +16,7 @@ function addCategory() {
     categoryName.value = " ";
     tax.value = " ";
     return false;
-  } else if (!/^[0-1a-zA-Z\sáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]*$/g.test(categoryName.value)) {
+  } else if (!/^[0-9a-zA-Z\sáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]*$/g.test(categoryName.value)) {
     alert("Category name must be a word.");
     clearInputs();
     return false;
@@ -30,7 +30,7 @@ function addCategory() {
   }
 
   const category = {
-    code: categories.length + 1,
+    code: categories.length > 0 ? categories[categories.length -1].code + 1 : 1,
     name: categoryName.value,
     tax: tax.value,
   };
@@ -79,7 +79,6 @@ function showTable() {
     <td><button onclick = "deleteCategory(${i})" class="cancel">Delete</button>
     </tr>`;
     i++;
-    console.log(category.code)
   }
 }
 
