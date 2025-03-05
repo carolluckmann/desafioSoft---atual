@@ -22,24 +22,23 @@ function getProducts() {
 }
 
 function showProducts() {
-  let selectedValue = productSelect.value;
-  productSelect.innerHTML = "<option value='' selected hidden>Select a product</option>";
+  productSelect.innerHTML =
+    "<option value='' selected hidden>Select a product</option>";
+  console.log(products);
   products.forEach((p) => {
     let option = document.createElement("option");
-        option.value = p.name;
-        option.textContent = p.name;
-        productSelect.appendChild(option);
-    if(p.amount <= 0){
-      productSelect.innerHTML = `<option id="product" value="" selected hidden>Select product</option>`;
+    option.value = p.name;
+    option.textContent = p.name;
+    if (p.amount > 0) {
+      productSelect.appendChild(option);
     }
   });
-  productSelect.value = selectedValue; 
 }
 
 function findProductInfo() {
   const product = products.find((p) => p.name === productSelect.value);
   const category = categories.find((c) => c.name === product.category);
- 
+
   tax.value = `${category.tax}%`;
   price.value = `$${Number(product.price).toFixed(2)}`;
 }
@@ -51,16 +50,14 @@ function addItems() {
   if (!validInput()) {
     alert("The fields should be filled!");
     return;
-  } else if (productSelect.value == null || productSelect.value == ""){
-    alert("Select a product before continue...")
+  } else if (productSelect.value == null || productSelect.value == "") {
+    alert("Select a product before continue...");
     return true;
-  }
- else if (amount.value <= 0) {
+  } else if (amount.value <= 0) {
     alert("Amount must be a positive number.");
     clearInputs();
     return false;
-} 
-  else if (!amountProduct()) {
+  } else if (!amountProduct()) {
     alert("It's impossible to add this amount, we don't have it in stock");
     clearInputs();
     return;
@@ -79,7 +76,8 @@ function addItems() {
       amount: Number(amount.value),
       price: Number(price.value.toString().replace("$", "")),
       tax: Number(tax.value.toString().replace("%", "")),
-      total: Number(amount.value) * Number(price.value.toString().replace("$", "")),
+      total:
+        Number(amount.value) * Number(price.value.toString().replace("$", "")),
     };
     items.push(item);
   }
@@ -191,11 +189,14 @@ function cancelPurchase() {
   if (items.length === 0) {
     alert("Your cart is empty!");
     return;
-  }
-  else if (confirm("Are you sure? This action will remove all the items of your cart!") == true) {
+  } else if (
+    confirm(
+      "Are you sure? This action will remove all the items of your cart!"
+    ) == true
+  ) {
     localStorage.setItem("items", JSON.stringify([]));
-  } 
-  
+  }
+
   getItems();
   showTable();
   showResult();
@@ -220,35 +221,37 @@ function finishPurchase() {
   items.forEach((cartItem) => {
     let productIndex = products.findIndex((p) => p.name === cartItem.name);
     if (productIndex !== -1) {
-      products[productIndex].amount -= cartItem.amount; 
+      products[productIndex].amount -= cartItem.amount;
     }
   });
   localStorage.setItem("products", JSON.stringify(products));
-  
+
   localStorage.setItem("items", JSON.stringify([]));
   window.location.href = `./history.html`;
 }
 
-document.getElementById("finishButton").addEventListener("click", finishPurchase);
+document
+  .getElementById("finishButton")
+  .addEventListener("click", finishPurchase);
 
 setInterval(() => {
   if (amount.type !== "number") {
-      amount.type = "number";
+    amount.type = "number";
   }
   if (tax.type !== "text") {
-      tax.type = "text";
+    tax.type = "text";
   }
   if (price.type !== "text") {
     price.type = "text";
-} 
-const currentOptions = Array.from(productSelect.options).map(opt => opt.value);
-const correctOptions = products.map(p => p.name);
-if (JSON.stringify(currentOptions) !== JSON.stringify(correctOptions)) {
-  showProducts();
-}
-}, 500
-);
-
+  }
+  const currentOptions = Array.from(productSelect.options).map(
+    (opt) => opt.value
+  );
+  const correctOptions = products.map((p) => p.name);
+  // if (JSON.stringify(currentOptions) !== JSON.stringify(correctOptions)) {
+  //   showProducts();
+  // }
+}, 500);
 
 getItems();
 deleteProduct();
